@@ -1,1 +1,10 @@
 reference
+node_modules
+out
+dist
+.DS_Store
+*.log
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
