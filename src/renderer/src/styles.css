@@ -1,9 +1,12 @@
 :root {
   --color-black: #18191c;
+  --color-black-soft: #292929;
   --color-white: #ffffff;
   --color-grey-50: #f7f7f6;
   --color-grey-100: #eeeeec;
   --color-grey-200: #ddddda;
+  --color-grey-400: #a3a3a0;
+  --color-grey-600: #666663;
 
   color: var(--color-black);
   background: var(--color-grey-100);
@@ -66,7 +69,7 @@ body {
   aspect-ratio: 1;
   place-items: center;
   border-radius: 34px;
-  background: #292929;
+  background: var(--color-black-soft);
   box-shadow:
     0 14px 30px rgb(0 0 0 / 14%),
     0 3px 8px rgb(0 0 0 / 10%);
@@ -108,6 +111,277 @@ body {
   border-radius: 36px;
 }
 
+.project-dialog {
+  width: min(780px, calc(100vw - 48px));
+  max-height: calc(100dvh - 48px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-grey-200);
+  border-radius: 28px;
+  background: var(--color-white);
+  color: var(--color-black);
+  box-shadow: 0 32px 90px rgb(0 0 0 / 24%);
+}
+
+.project-dialog::backdrop {
+  background: rgb(15 15 16 / 52%);
+  backdrop-filter: blur(5px);
+}
+
+.project-form {
+  max-height: calc(100dvh - 50px);
+  overflow-y: auto;
+}
+
+.dialog-header,
+.dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dialog-header {
+  padding: 28px 30px 22px;
+  border-bottom: 1px solid var(--color-grey-100);
+}
+
+.dialog-eyebrow {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-grey-600);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dialog-header h1 {
+  margin: 0;
+  font-size: 1.55rem;
+  line-height: 1.2;
+}
+
+.icon-button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--color-grey-200);
+  border-radius: 50%;
+  background: var(--color-white);
+  cursor: pointer;
+}
+
+.icon-button svg {
+  width: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.6;
+}
+
+.dialog-content {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 30px;
+  padding: 28px 30px 32px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.icon-upload {
+  display: grid;
+  gap: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon-upload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.icon-upload img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px dashed var(--color-grey-200);
+  border-radius: 22px;
+  background: var(--color-grey-50);
+}
+
+.icon-upload > span {
+  color: var(--color-grey-600);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.project-fields {
+  display: grid;
+  gap: 20px;
+}
+
+.field {
+  display: block;
+}
+
+.field input,
+.field textarea,
+.field select,
+.tag-input {
+  width: 100%;
+  border: 1px solid var(--color-grey-200);
+  border-radius: 12px;
+  background: var(--color-white);
+  color: var(--color-black);
+  font: inherit;
+  outline: none;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.field > input,
+.field textarea,
+.field select {
+  padding: 11px 13px;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus,
+.tag-input:focus-within {
+  border-color: var(--color-black);
+  box-shadow: 0 0 0 3px rgb(24 25 28 / 9%);
+}
+
+.tag-input {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  min-height: 46px;
+  padding: 7px 9px;
+  cursor: text;
+}
+
+.tag-input > input {
+  flex: 1 1 180px;
+  min-width: 120px;
+  padding: 3px;
+  border: 0;
+  box-shadow: none;
+}
+
+.tag-input > input:focus {
+  box-shadow: none;
+}
+
+.topic-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px 5px 10px;
+  border-radius: 999px;
+  background: var(--color-black-soft);
+  color: var(--color-white);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.topic-tag button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-grey-400);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 0.8;
+  cursor: pointer;
+}
+
+.field-hint {
+  display: block;
+  margin-top: 6px;
+  color: var(--color-grey-600);
+  font-size: 0.74rem;
+}
+
+.study-plan {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.study-plan legend {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.compact-field > span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--color-grey-600);
+  font-size: 0.76rem;
+}
+
+.dialog-actions {
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 30px;
+  border-top: 1px solid var(--color-grey-100);
+  background: var(--color-grey-50);
+}
+
+.dialog-actions button {
+  padding: 10px 16px;
+  border-radius: 11px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.secondary-button {
+  border: 1px solid var(--color-grey-200);
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.primary-button {
+  border: 1px solid var(--color-black);
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.icon-button:hover,
+.secondary-button:hover {
+  background: var(--color-grey-100);
+}
+
+.primary-button:hover {
+  background: var(--color-black-soft);
+}
+
 .side-panel {
   min-width: 0;
   border-left: 1px solid var(--color-grey-200);
@@ -121,5 +395,24 @@ body {
 
   .main-workspace {
     padding: 36px;
+  }
+}
+
+@media (max-width: 680px) {
+  .project-dialog {
+    width: calc(100vw - 24px);
+    max-height: calc(100dvh - 24px);
+  }
+
+  .project-form {
+    max-height: calc(100dvh - 26px);
+  }
+
+  .dialog-content {
+    grid-template-columns: 1fr;
+  }
+
+  .icon-field {
+    width: 150px;
   }
 }
