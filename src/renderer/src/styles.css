@@ -7,6 +7,7 @@
   --color-grey-200: #ddddda;
   --color-grey-400: #a3a3a0;
   --color-grey-600: #666663;
+  --color-danger: #d92d20;
 
   color: var(--color-black);
   background: var(--color-grey-100);
@@ -60,22 +61,27 @@ body {
   position: relative;
   width: clamp(156px, 17vw, 204px);
   aspect-ratio: 1;
+  color: var(--color-white);
+  transition: transform 160ms ease;
+  -webkit-app-region: no-drag;
+}
+
+.project-card-surface {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   padding: 0;
   border: 6px solid var(--color-black-soft);
   border-radius: 34px;
   background: var(--color-black-soft);
-  color: var(--color-white);
+  color: inherit;
   font: inherit;
   text-align: left;
   box-shadow:
     0 14px 30px rgb(0 0 0 / 14%),
     0 3px 8px rgb(0 0 0 / 10%);
   cursor: pointer;
-  transition:
-    box-shadow 160ms ease,
-    transform 160ms ease;
-  -webkit-app-region: no-drag;
+  transition: box-shadow 160ms ease;
 }
 
 .project-card-cover {
@@ -157,14 +163,6 @@ body {
   font-size: 0.76rem;
 }
 
-.project-card-options {
-  flex: none;
-  color: var(--color-grey-200);
-  font-size: 1.25rem;
-  letter-spacing: 0.08em;
-  line-height: 1;
-}
-
 .project-card-count {
   display: inline-flex;
   align-items: center;
@@ -184,19 +182,98 @@ body {
 }
 
 .project-card:hover {
-  box-shadow:
-    0 18px 34px rgb(0 0 0 / 17%),
-    0 4px 10px rgb(0 0 0 / 12%);
   transform: translateY(-2px);
 }
 
-.project-card:active {
+.project-card:hover .project-card-surface {
+  box-shadow:
+    0 18px 34px rgb(0 0 0 / 17%),
+    0 4px 10px rgb(0 0 0 / 12%);
+}
+
+.project-card:has(.project-card-surface:active) {
   transform: translateY(0) scale(0.98);
 }
 
-.project-card:focus-visible {
+.project-card-surface:focus-visible {
   outline: 2px solid var(--color-black);
   outline-offset: 5px;
+}
+
+.project-menu-trigger {
+  position: absolute;
+  top: 55%;
+  right: 11px;
+  z-index: 4;
+  display: grid;
+  width: 34px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-grey-200);
+  font: inherit;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.project-menu-trigger:hover,
+.project-menu-trigger[aria-expanded="true"] {
+  background: rgb(255 255 255 / 10%);
+  color: var(--color-white);
+}
+
+.project-menu-trigger:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 1px;
+}
+
+.project-menu {
+  position: absolute;
+  top: calc(55% + 30px);
+  right: 8px;
+  z-index: 8;
+  width: 124px;
+  padding: 6px;
+  border: 1px solid var(--color-grey-200);
+  border-radius: 11px;
+  background: var(--color-white);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 20%);
+}
+
+.project-menu button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--color-danger);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.project-menu button:hover,
+.project-menu button:focus-visible {
+  background: rgb(217 45 32 / 8%);
+  outline: none;
+}
+
+.project-menu svg {
+  width: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
 }
 
 .new-project-control {

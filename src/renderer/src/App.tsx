@@ -31,6 +31,7 @@ function App(): React.JSX.Element {
   const [topicDraft, setTopicDraft] = useState('')
   const [iconPreview, setIconPreview] = useState<string | null>(null)
   const [projects, setProjects] = useState<Project[]>([])
+  const [openProjectMenuId, setOpenProjectMenuId] = useState<string | null>(null)
 
   const openDialog = (): void => dialogRef.current?.showModal()
   const closeDialog = (): void => dialogRef.current?.close()
@@ -100,7 +101,7 @@ function App(): React.JSX.Element {
   }
 
   return (
-    <div className="app-layout">
+    <div className="app-layout" onClick={() => setOpenProjectMenuId(null)}>
       <aside className="navigation-rail" aria-label="Primary navigation" />
       <main className="main-workspace" aria-label="Main workspace">
         <div className="project-grid">
@@ -114,11 +115,9 @@ function App(): React.JSX.Element {
           </button>
 
           {projects.map((project) => (
-            <button
+            <article
               className="project-card"
-              type="button"
               key={project.id}
-              aria-label={`Open ${project.name}`}
               style={
                 {
                   '--project-color-start': project.palette[0],
@@ -126,34 +125,67 @@ function App(): React.JSX.Element {
                 } as CSSProperties
               }
             >
-              <span className="project-card-cover" aria-hidden="true">
-                {project.iconUrl ? (
-                  <img src={project.iconUrl} alt="" />
-                ) : (
-                  <svg className="default-project-icon" viewBox="0 0 72 58">
-                    <path d="M15 11h30a5 5 0 0 1 5 5v35H15a5 5 0 0 1-5-5V16a5 5 0 0 1 5-5Z" />
-                    <path d="M23 6h30a5 5 0 0 1 5 5v40H23a5 5 0 0 1-5-5V11a5 5 0 0 1 5-5Z" />
-                    <path d="M29 18h20M29 26h20M29 34h15" />
-                  </svg>
-                )}
-              </span>
-              <span className="project-card-body">
-                <span className="project-card-heading">
-                  <strong className="project-card-title">{project.name}</strong>
-                  <span className="project-card-options" aria-hidden="true">
-                    •••
+              <button className="project-card-surface" type="button" aria-label={`Open ${project.name}`}>
+                <span className="project-card-cover" aria-hidden="true">
+                  {project.iconUrl ? (
+                    <img src={project.iconUrl} alt="" />
+                  ) : (
+                    <svg className="default-project-icon" viewBox="0 0 72 58">
+                      <path d="M15 11h30a5 5 0 0 1 5 5v35H15a5 5 0 0 1-5-5V16a5 5 0 0 1 5-5Z" />
+                      <path d="M23 6h30a5 5 0 0 1 5 5v40H23a5 5 0 0 1-5-5V11a5 5 0 0 1 5-5Z" />
+                      <path d="M29 18h20M29 26h20M29 34h15" />
+                    </svg>
+                  )}
+                </span>
+                <span className="project-card-body">
+                  <span className="project-card-heading">
+                    <strong className="project-card-title">{project.name}</strong>
+                  </span>
+                  <span className="project-card-description">{project.description || 'Study project'}</span>
+                  <span className="project-card-count">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 7V5a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2h-2" />
+                      <path d="M5 7h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" />
+                    </svg>
+                    0 items
                   </span>
                 </span>
-                <span className="project-card-description">{project.description || 'Study project'}</span>
-                <span className="project-card-count">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M8 7V5a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2h-2" />
-                    <path d="M5 7h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" />
-                  </svg>
-                  0 items
-                </span>
-              </span>
-            </button>
+              </button>
+
+              <button
+                className="project-menu-trigger"
+                type="button"
+                aria-label={`Actions for ${project.name}`}
+                aria-haspopup="menu"
+                aria-expanded={openProjectMenuId === project.id}
+                onClick={(event) => {
+                  event.stopPropagation()
+                  setOpenProjectMenuId((currentId) => (currentId === project.id ? null : project.id))
+                }}
+              >
+                <span aria-hidden="true">•••</span>
+              </button>
+
+              {openProjectMenuId === project.id && (
+                <div className="project-menu" role="menu" aria-label={`Actions for ${project.name}`}>
+                  <button
+                    type="button"
+                    role="menuitem"
+                    onClick={() => {
+                      setProjects((currentProjects) =>
+                        currentProjects.filter((currentProject) => currentProject.id !== project.id)
+                      )
+                      setOpenProjectMenuId(null)
+                    }}
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5" />
+                    </svg>
+                    Delete
+                  </button>
+                </div>
+              )}
+            </article>
           ))}
         </div>
       </main>
