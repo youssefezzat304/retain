@@ -1,27 +1,19 @@
-import { useEffect, useState } from 'react'
-
 function App(): React.JSX.Element {
-  const [version, setVersion] = useState('')
-
-  useEffect(() => {
-    void window.electronAPI.getAppVersion().then(setVersion)
-  }, [])
-
   return (
-    <main className="app-shell">
-      <section className="hero" aria-labelledby="app-title">
-        <span className="eyebrow">Local-first active recall</span>
-        <h1 id="app-title">Retain</h1>
-        <p>
-          Prove what you know with text, diagrams, and drawings—then let private,
-          on-device AI help schedule what to study next.
-        </p>
-        <div className="status">
-          <span className="status-dot" aria-hidden="true" />
-          Electron foundation ready{version ? ` · v${version}` : ''}
-        </div>
-      </section>
-    </main>
+    <div className="app-layout">
+      <aside className="navigation-rail" aria-label="Primary navigation" />
+      <main className="main-workspace" aria-label="Main workspace">
+        <button className="new-project-control" type="button">
+          <span className="new-project-tile" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="presentation">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </span>
+          <span className="new-project-label">New Project</span>
+        </button>
+      </main>
+      <aside className="side-panel" aria-label="Secondary panel" />
+    </div>
   )
 }
 

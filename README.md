@@ -19,6 +19,13 @@ npm run package
 npm run dist
 ```
 
+To run the standard build in the project container:
+
+```bash
+docker build -t retain-build .
+docker run --rm retain-build
+```
+
 - `build` creates the production application bundles in `out/`.
 - `package` creates an unpacked application for the current platform in `dist/`.
 - `dist` creates an installer or distributable for the current platform.
