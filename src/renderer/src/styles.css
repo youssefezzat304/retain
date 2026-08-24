@@ -260,7 +260,7 @@ body {
 }
 
 .field textarea {
-  resize: vertical;
+  resize: none;
 }
 
 .field input:focus,
@@ -342,6 +342,53 @@ body {
   margin-bottom: 7px;
   color: var(--color-grey-600);
   font-size: 0.76rem;
+}
+
+.input-suffix {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 46px;
+  overflow: hidden;
+  border: 1px solid var(--color-grey-200);
+  border-radius: 12px;
+  background: var(--color-white);
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.input-suffix:focus-within {
+  border-color: var(--color-black);
+  box-shadow: 0 0 0 3px rgb(24 25 28 / 9%);
+}
+
+.input-suffix input {
+  min-width: 0;
+  flex: 1;
+  padding: 11px 4px 11px 13px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  appearance: textfield;
+}
+
+.input-suffix input:focus {
+  box-shadow: none;
+}
+
+.input-suffix input::-webkit-inner-spin-button,
+.input-suffix input::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.input-suffix > span {
+  padding-right: 13px;
+  color: var(--color-grey-600);
+  font-size: 0.82rem;
+  white-space: nowrap;
 }
 
 .dialog-actions {
