@@ -1,6 +1,8 @@
 import { join } from 'node:path'
 import { app, BrowserWindow, ipcMain, shell } from 'electron'
 
+app.setName('Gyrus')
+
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 1200,

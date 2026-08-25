@@ -1,4 +1,4 @@
-# Retain
+# Gyrus
 
 A cross-platform, local-first active-recall study app built with Electron, React,
 and TypeScript.
@@ -22,8 +22,8 @@ npm run dist
 To run the standard build in the project container:
 
 ```bash
-docker build -t retain-build .
-docker run --rm retain-build
+docker build -t gyrus-build .
+docker run --rm gyrus-build
 ```
 
 - `build` creates the production application bundles in `out/`.

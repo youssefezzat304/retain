@@ -1,5 +1,5 @@
 {
-  "name": "retain",
+  "name": "gyrus",
   "version": "0.1.0",
   "description": "A local-first AI active-recall study app.",
   "main": "./out/main/index.js",
@@ -31,8 +31,8 @@
     "vite": "^7.3.6"
   },
   "build": {
-    "appId": "com.retain.study",
-    "productName": "Retain",
+    "appId": "com.gyrus.study",
+    "productName": "Gyrus",
     "directories": {
       "output": "dist"
     },

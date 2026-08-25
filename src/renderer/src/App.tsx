@@ -170,7 +170,27 @@ function App(): React.JSX.Element {
 
               {openProjectMenuId === project.id && (
                 <div className="project-menu" role="menu" aria-label={`Actions for ${project.name}`}>
+                  <button type="button" role="menuitem" onClick={() => setOpenProjectMenuId(null)}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17l-1 3ZM14.5 7.5l3 3" />
+                    </svg>
+                    Edit
+                  </button>
+                  <button type="button" role="menuitem" onClick={() => setOpenProjectMenuId(null)}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                    Add
+                  </button>
+                  <button type="button" role="menuitem" onClick={() => setOpenProjectMenuId(null)}>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M6 14v6" />
+                    </svg>
+                    Settings
+                  </button>
+                  <div className="project-menu-separator" role="separator" />
                   <button
+                    className="destructive-menu-item"
                     type="button"
                     role="menuitem"
                     onClick={() => {

@@ -265,7 +265,7 @@ body {
   border: 0;
   border-radius: 6px;
   background: transparent;
-  color: var(--color-danger);
+  color: var(--color-black);
   font: inherit;
   font-size: 0.8rem;
   font-weight: 550;
@@ -274,8 +274,23 @@ body {
 
 .project-menu button:hover,
 .project-menu button:focus-visible {
-  background: rgb(217 45 32 / 8%);
+  background: var(--color-grey-100);
   outline: none;
+}
+
+.project-menu .destructive-menu-item {
+  color: var(--color-danger);
+}
+
+.project-menu .destructive-menu-item:hover,
+.project-menu .destructive-menu-item:focus-visible {
+  background: rgb(217 45 32 / 8%);
+}
+
+.project-menu-separator {
+  height: 1px;
+  margin: 4px -4px;
+  background: var(--color-grey-100);
 }
 
 .project-menu svg {
