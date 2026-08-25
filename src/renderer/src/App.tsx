@@ -139,7 +139,9 @@ function App(): React.JSX.Element {
                 </span>
                 <span className="project-card-body">
                   <span className="project-card-heading">
-                    <strong className="project-card-title">{project.name}</strong>
+                    <strong className="project-card-title" title={project.name}>
+                      {project.name}
+                    </strong>
                   </span>
                   <span className="project-card-description">{project.description || 'Study project'}</span>
                   <span className="project-card-count">

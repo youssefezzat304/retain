@@ -148,11 +148,14 @@ body {
 .project-card-heading {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
+  min-width: 0;
+  padding-right: 36px;
 }
 
 .project-card-title {
+  display: block;
+  min-width: 0;
+  flex: 1;
   font-size: 1rem;
   font-weight: 600;
 }
@@ -185,6 +188,10 @@ body {
   transform: translateY(-2px);
 }
 
+.project-card:has(.project-menu) {
+  z-index: 10;
+}
+
 .project-card:hover .project-card-surface {
   box-shadow:
     0 18px 34px rgb(0 0 0 / 17%),
@@ -202,12 +209,12 @@ body {
 
 .project-menu-trigger {
   position: absolute;
-  top: 55%;
+  top: 57%;
   right: 11px;
   z-index: 4;
   display: grid;
   width: 34px;
-  height: 28px;
+  height: 26px;
   padding: 0;
   place-items: center;
   border: 0;
@@ -234,30 +241,34 @@ body {
 
 .project-menu {
   position: absolute;
-  top: calc(55% + 30px);
-  right: 8px;
+  top: calc(100% + 8px);
+  right: 0;
   z-index: 8;
-  width: 124px;
-  padding: 6px;
-  border: 1px solid var(--color-grey-200);
-  border-radius: 11px;
+  width: 136px;
+  padding: 4px;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
   background: var(--color-white);
-  box-shadow: 0 12px 28px rgb(0 0 0 / 20%);
+  box-shadow:
+    0 10px 24px rgb(0 0 0 / 12%),
+    0 2px 6px rgb(0 0 0 / 6%);
+  transform-origin: top right;
+  animation: project-menu-in 120ms ease-out;
 }
 
 .project-menu button {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   width: 100%;
-  padding: 9px 10px;
+  padding: 8px 9px;
   border: 0;
-  border-radius: 7px;
+  border-radius: 6px;
   background: transparent;
   color: var(--color-danger);
   font: inherit;
-  font-size: 0.82rem;
-  font-weight: 650;
+  font-size: 0.8rem;
+  font-weight: 550;
   cursor: pointer;
 }
 
@@ -268,12 +279,24 @@ body {
 }
 
 .project-menu svg {
-  width: 17px;
+  width: 16px;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.7;
+}
+
+@keyframes project-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .new-project-control {
